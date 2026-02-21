@@ -18,4 +18,630 @@
     :root {
       --black: #0a0a0a; --white: #f2f0eb; --red: #e8320a; --red-dim: #b82608;
       --yellow: #f5c842; --grid-line: #222;
-      --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif; --display: 'Bebas Neue​​​​​​​​​​​​​​​​
+      --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif; --display: 'Bebas Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.6; cursor: crosshair; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+    a, button { cursor: crosshair; }
+    nav { position: sticky; top: 0; z-index: 200; display: flex; align-items: stretch; height: 56px; border-bottom: 3px solid var(--red); background: var(--black); }
+    .nav-top { display: contents; }
+    .nav-logo-block { display: flex; align-items: center; padding: 0 1.5rem; border-right: 3px solid var(--red); font-family: var(--display); font-size: 1.3rem; letter-spacing: 0.06em; color: var(--white); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+    .nav-logo-block span { color: var(--red); }
+    .nav-ticker { display: none; } .nav-hamburger { display: none; }
+    .nav-links { display: flex; align-items: stretch; list-style: none; margin-left: auto; }
+    .nav-links li { display: flex; }
+    .nav-links a { display: flex; align-items: center; padding: 0 1.25rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: #888; text-decoration: none; border-left: 1px solid var(--grid-line); transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .nav-links a:hover { background: var(--red); color: var(--white); }
+    #hero { min-height: 100vh; padding-top: 0; display: grid; grid-template-rows: 1fr auto; }
+    .hero-main { display: grid; grid-template-columns: 3fr 2fr; }
+    .hero-left { padding: 5rem 4rem 4rem; border-right: 3px solid var(--red); display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .hero-left::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: repeating-linear-gradient(90deg, var(--red) 0, var(--red) 40px, transparent 40px, transparent 60px); }
+    .hero-eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem; }
+    .hero-name { font-family: var(--display); font-size: clamp(5rem, 11vw, 9rem); line-height: 0.92; letter-spacing: 0.01em; color: var(--white); margin-bottom: 2.5rem; }
+    .hero-name .accent { color: var(--red); display: block; }
+    .hero-desc { font-size: 1.05rem; font-weight: 300; color: #999; max-width: 480px; border-left: 3px solid var(--yellow); padding-left: 1.25rem; margin-bottom: 3rem; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 1rem; background: var(--red); color: var(--white); text-decoration: none; padding: 1rem 2.5rem; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: background 0.15s; align-self: flex-start; }
+    .hero-cta::after { content: '→'; font-size: 1rem; }
+    .hero-cta:hover { background: var(--red-dim); }
+    .hero-right { display: grid; grid-template-rows: repeat(3, 1fr); }
+    .stat-block { padding: 2.5rem 3rem; border-bottom: 3px solid var(--grid-line); display: flex; flex-direction: column; justify-content: center; transition: background 0.2s; }
+    .stat-block:hover { background: #111; }
+    .stat-block:last-child { border-bottom: none; }
+    .stat-n { font-family: var(--display); font-size: 3.8rem; line-height: 1; color: var(--red); margin-bottom: 0.4rem; }
+    .stat-l { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #555; }
+    .hero-band { height: 48px; background: var(--red); display: flex; align-items: center; padding: 0 4rem; gap: 3rem; overflow: hidden; }
+    .hero-band span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.85); white-space: nowrap; }
+    .hero-band .sep { color: rgba(255,255,255,0.3); }
+    .section-header { display: grid; grid-template-columns: auto 1fr; align-items: stretch; border-bottom: 3px solid var(--red); }
+    .section-number { font-family: var(--display); font-size: 4.5rem; line-height: 1; color: var(--red); padding: 1.25rem 2.5rem; border-right: 3px solid var(--red); opacity: 0.2; display: flex; align-items: center; }
+    .section-title-block { padding: 1.75rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .section-eyebrow { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+    .section-title { font-family: var(--display); font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: 0.04em; line-height: 1; color: var(--white); }
+    #about { border-bottom: 3px solid var(--grid-line); }
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; }
+    .about-text { padding: 4rem; border-right: 3px solid var(--grid-line); }
+    .about-text p { color: #bbb; font-weight: 300; margin-bottom: 1.25rem; font-size: 1rem; }
+    .about-text p strong { color: var(--white); font-weight: 600; }
+    .expertise-panel { padding: 4rem 3rem; }
+    .expertise-label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 1.75rem; }
+    .expertise-item { display: grid; grid-template-columns: 16px 1fr; gap: 1rem; align-items: start; padding: 0.85rem 0; border-bottom: 1px solid var(--grid-line); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em; color: #777; transition: color 0.15s; }
+    .expertise-item:hover { color: var(--white); }
+    .expertise-item::before { content: '▸'; color: var(--red); margin-top: 1px; }
+    #ledger { border-bottom: 3px solid var(--grid-line); }
+    .ledger-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .ledger-card { padding: 3rem; border-right: 3px solid var(--grid-line); border-bottom: 3px solid var(--grid-line); position: relative; overflow: hidden; transition: background 0.2s; }
+    .ledger-card:nth-child(even) { border-right: none; }
+    .ledger-card:nth-child(3), .ledger-card:nth-child(4) { border-bottom: none; }
+    .ledger-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--red); transition: height 0.3s ease; }
+    .ledger-card:hover::before { height: 100%; }
+    .ledger-card:hover { background: #0f0f0f; }
+    .ledger-tag { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+    .ledger-tag::before { content: '//'; opacity: 0.4; }
+    .ledger-card h3 { font-family: var(--display); font-size: 1.5rem; letter-spacing: 0.04em; line-height: 1.15; color: var(--white); margin-bottom: 1rem; }
+    .ledger-card p { font-size: 0.88rem; color: #666; font-weight: 300; margin-bottom: 2rem; line-height: 1.7; }
+    .ledger-meta { display: flex; justify-content: space-between; align-items: center; }
+    .ledger-date { font-family: var(--mono); font-size: 0.66rem; color: #444; letter-spacing: 0.08em; }
+    .ledger-read { font-family: var(--mono); font-size: 0.7rem; color: var(--red); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: letter-spacing 0.2s; }
+    .ledger-read:hover { letter-spacing: 0.22em; }
+    #investments { border-bottom: 3px solid var(--grid-line); }
+    #investments .section-header { border-color: var(--yellow); }
+    #investments .section-eyebrow { color: var(--yellow); }
+    #investments .section-number { color: var(--yellow); border-color: var(--yellow); }
+    .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .inv-card { padding: 3rem 2.5rem; border-right: 3px solid var(--grid-line); position: relative; overflow: hidden; transition: background 0.2s; }
+    .inv-card:last-child { border-right: none; }
+    .inv-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .inv-card:hover::after { transform: scaleX(1); }
+    .inv-card:hover { background: #0f0f0f; }
+    .inv-ticker { font-family: var(--display); font-size: 3.5rem; letter-spacing: 0.04em; color: var(--yellow); line-height: 1; margin-bottom: 0.3rem; }
+    .inv-company { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #444; margin-bottom: 1.75rem; }
+    .inv-thesis { font-size: 0.88rem; color: #888; font-weight: 300; line-height: 1.7; margin-bottom: 2rem; }
+    .inv-badge { display: inline-block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid var(--yellow); color: var(--yellow); }
+    .inv-disclaimer { padding: 1.5rem 3rem; border-top: 1px solid var(--grid-line); font-family: var(--mono); font-size: 0.65rem; color: #333; letter-spacing: 0.04em; line-height: 1.8; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; }
+    .contact-left { padding: 4rem; border-right: 3px solid var(--grid-line); display: flex; flex-direction: column; justify-content: space-between; }
+    .contact-headline { font-family: var(--display); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: 0.03em; margin-bottom: 2rem; }
+    .contact-headline .red { color: var(--red); }
+    .contact-tagline { font-size: 0.95rem; color: #666; font-weight: 300; border-left: 3px solid var(--red); padding-left: 1rem; margin-bottom: 3rem; line-height: 1.7; }
+    .contact-channels { display: flex; flex-direction: column; }
+    .contact-channel { display: grid; grid-template-columns: 90px 1fr; align-items: center; padding: 1rem 0; border-top: 1px solid var(--grid-line); }
+    .channel-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); }
+    .channel-value { font-family: var(--mono); font-size: 0.8rem; color: #777; }
+    .channel-value a { color: #777; text-decoration: none; transition: color 0.15s; }
+    .channel-value a:hover { color: var(--red); }
+    .contact-right { padding: 4rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-row { display: flex; flex-direction: column; border-bottom: 1px solid var(--grid-line); }
+    .form-row label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); padding: 1.25rem 0 0.3rem; }
+    .form-row input, .form-row textarea { background: transparent; border: none; outline: none; color: var(--white); font-family: var(--sans); font-size: 1rem; font-weight: 300; padding: 0.3rem 0 1.25rem; resize: none; caret-color: var(--red); }
+    .form-row input::placeholder, .form-row textarea::placeholder { color: #2a2a2a; }
+    .form-submit { margin-top: 2.5rem; background: var(--red); color: var(--white); border: none; padding: 1.1rem 3rem; font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; align-self: flex-start; transition: background 0.15s; }
+    .form-submit:hover { background: var(--red-dim); }
+    #disclosures { background: #0f0f0f; border-top: 3px solid var(--grid-line); border-bottom: 3px solid var(--grid-line); }
+    .disclosures-header { display: flex; align-items: center; gap: 1.5rem; padding: 1.25rem 3rem; border-bottom: 1px solid var(--grid-line); cursor: pointer; user-select: none; transition: background 0.15s; }
+    .disclosures-header:hover { background: #151515; }
+    .disclosures-toggle-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; flex: 1; }
+    .disclosures-toggle-label span { color: var(--red); }
+    .disclosures-chevron { font-family: var(--mono); font-size: 0.72rem; color: #444; transition: transform 0.25s; }
+    .disclosures-chevron.open { transform: rotate(180deg); }
+    .disclosures-body { display: none; padding: 0; }
+    .disclosures-body.open { display: block; }
+    .disclosure-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--grid-line); }
+    .disclosure-block { padding: 2.5rem 3rem; border-right: 1px solid var(--grid-line); border-bottom: 1px solid var(--grid-line); }
+    .disclosure-block:nth-child(even) { border-right: none; }
+    .disclosure-block:nth-last-child(-n+2) { border-bottom: none; }
+    .disclosure-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.4rem; }
+    .disclosure-tag::before { content: '//'; opacity: 0.4; }
+    .disclosure-title { font-family: var(--display); font-size: 1.1rem; letter-spacing: 0.06em; color: #888; margin-bottom: 0.85rem; }
+    .disclosure-text { font-family: var(--mono); font-size: 0.72rem; color: #444; line-height: 1.85; letter-spacing: 0.02em; }
+    .disclosure-full { padding: 2rem 3rem; border-top: 1px solid var(--grid-line); font-family: var(--mono); font-size: 0.66rem; color: #333; line-height: 1.9; letter-spacing: 0.02em; }
+    footer { height: 48px; background: var(--red); display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 3rem; }
+    footer p { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.55); }
+    footer p:last-child { text-align: right; }
+    .reveal, .reveal-left { opacity: 1; transform: none; }
+    #board { border-bottom: 3px solid var(--grid-line); }
+    #board .section-header { border-bottom: 3px solid var(--grid-line); }
+    #board .section-eyebrow { color: #7ab88a; }
+    #board .section-number { color: #7ab88a; opacity: 0.2; }
+    #board .section-title { color: var(--white); }
+    .board-submit-area { display: grid; grid-template-columns: 1fr auto; border-bottom: 3px solid var(--grid-line); }
+    .board-form-inner { padding: 2.5rem 3rem; border-right: 3px solid var(--grid-line); }
+    .board-form-label { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: #7ab88a; margin-bottom: 1rem; display: block; }
+    .board-fields { display: grid; grid-template-columns: 160px 1fr; }
+    .board-field { display: flex; flex-direction: column; border: 1px solid var(--grid-line); border-right: none; }
+    .board-field:last-child { border-right: 1px solid var(--grid-line); }
+    .board-field label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); padding: 0.7rem 1rem 0.2rem; }
+    .board-field input, .board-field textarea { background: transparent; border: none; outline: none; color: var(--white); font-family: var(--sans); font-size: 0.95rem; font-weight: 300; padding: 0.2rem 1rem 0.9rem; resize: none; caret-color: #7ab88a; width: 100%; }
+    .board-field input::placeholder, .board-field textarea::placeholder { color: #2d2d2d; }
+    .board-meta-col { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+    .board-meta-field { display: flex; flex-direction: column; gap: 0.3rem; }
+    .board-meta-field label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); }
+    .board-meta-field input, .board-meta-field select { background: transparent; border: none; border-bottom: 1px solid var(--grid-line); outline: none; color: var(--white); font-family: var(--mono); font-size: 0.85rem; padding: 0.4rem 0; width: 100%; }
+    .board-meta-field select option { background: #111; color: var(--white); }
+    .board-post-btn { background: #7ab88a; color: var(--black); border: none; padding: 0.85rem 1.5rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; transition: background 0.15s; white-space: nowrap; }
+    .board-post-btn:hover { background: #5fa070; }
+    .board-post-btn:disabled { background: #333; color: #666; }
+    .board-feed { min-height: 200px; }
+    .board-loading { padding: 4rem 3rem; font-family: var(--mono); font-size: 0.72rem; color: #333; letter-spacing: 0.1em; text-transform: uppercase; }
+    .board-empty { padding: 4rem 3rem; font-family: var(--mono); font-size: 0.78rem; color: #333; }
+    .board-post { display: grid; grid-template-columns: 180px 1fr auto auto; align-items: start; border-bottom: 1px solid var(--grid-line); transition: background 0.15s; }
+    .board-post:hover { background: #0d0d0d; }
+    .board-post-time { padding: 1.75rem 2rem; border-right: 1px solid var(--grid-line); display: flex; flex-direction: column; gap: 0.25rem; }
+    .post-date { font-family: var(--mono); font-size: 0.72rem; color: #7ab88a; letter-spacing: 0.06em; }
+    .post-time { font-family: var(--mono); font-size: 0.64rem; color: #444; }
+    .board-post-body { padding: 1.75rem 2.5rem; }
+    .post-handle { font-family: var(--mono); font-size: 0.7rem; color: var(--red); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .post-ticker-label { display: inline-block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; margin-bottom: 0.75rem; margin-left: 0.6rem; }
+    .post-ticker-label.bullish { border: 1px solid #7ab88a; color: #7ab88a; }
+    .post-ticker-label.bearish { border: 1px solid var(--red); color: var(--red); }
+    .post-ticker-label.neutral { border: 1px solid #666; color: #666; }
+    .post-text { font-size: 0.92rem; color: #bbb; font-weight: 300; line-height: 1.6; }
+    .board-post-side { padding: 1.75rem 1.5rem; display: flex; align-items: flex-start; }
+    .post-ticker-big { font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.06em; color: #333; white-space: nowrap; }
+    .post-share-btn { background: none; border: 1px solid var(--grid-line); color: #555; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.75rem; margin-top: 1rem; transition: border-color 0.15s, color 0.15s; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .post-share-btn:hover { border-color: var(--red); color: var(--red); }
+    .share-popup { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: #111; border: 2px solid var(--red); padding: 1.25rem 1.5rem; display: none; flex-direction: column; gap: 0.75rem; z-index: 999; min-width: 260px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+    .share-popup.open { display: flex; }
+    .share-popup-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 0.25rem; }
+    .share-popup-btns { display: flex; flex-direction: column; gap: 0.5rem; }
+    .share-option { display: flex; align-items: center; gap: 0.75rem; background: none; border: 1px solid var(--grid-line); color: #aaa; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.6rem 1rem; text-align: left; transition: background 0.15s, color 0.15s, border-color 0.15s; text-decoration: none; cursor: crosshair; }
+    .share-option:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+    .share-option-icon { font-size: 0.9rem; width: 16px; text-align: center; }
+    .share-popup-close { background: none; border: none; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #444; margin-top: 0.25rem; transition: color 0.15s; text-align: right; align-self: flex-end; }
+    .share-popup-close:hover { color: var(--white); }
+    .share-copied { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: #7ab88a; display: none; text-align: center; }
+    .share-copied.show { display: block; }
+    @media (max-width: 768px) {
+      nav { height: auto; flex-wrap: wrap; }
+      .nav-logo-block { padding: 0 1rem; font-size: 1.1rem; height: 52px; }
+      .nav-links { width: 100%; margin-left: 0; border-top: 1px solid var(--grid-line); flex-wrap: wrap; }
+      .nav-links a { padding: 0.75rem 1rem; font-size: 0.68rem; border-left: none; border-right: 1px solid var(--grid-line); border-bottom: 1px solid var(--grid-line); flex: 1; justify-content: center; }
+      #hero { min-height: auto; }
+      .hero-main { grid-template-columns: 1fr; }
+      .hero-left { padding: 2.5rem 1.5rem 2rem; border-right: none; border-bottom: 3px solid var(--grid-line); }
+      .hero-name { font-size: 4rem; }
+      .hero-right { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; border-top: 3px solid var(--grid-line); }
+      .stat-block { border-bottom: none; border-right: 1px solid var(--grid-line); padding: 1.5rem 1rem; }
+      .stat-block:last-child { border-right: none; }
+      .stat-n { font-size: 2.2rem; }
+      .hero-band { padding: 0 1rem; gap: 1rem; height: 40px; overflow: hidden; }
+      .hero-band span { font-size: 0.6rem; }
+      .section-number { font-size: 3rem; padding: 1rem 1.25rem; }
+      .section-title-block { padding: 1.25rem 1.5rem; }
+      .section-title { font-size: 1.6rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-text { padding: 2rem 1.5rem; border-right: none; border-bottom: 3px solid var(--grid-line); }
+      .expertise-panel { padding: 2rem 1.5rem; }
+      .ledger-grid { grid-template-columns: 1fr; }
+      .ledger-card { border-right: none; border-bottom: 3px solid var(--grid-line) !important; padding: 2rem 1.5rem; }
+      .ledger-card:last-child { border-bottom: none !important; }
+      .inv-grid { grid-template-columns: 1fr; }
+      .inv-card { border-right: none; border-bottom: 3px solid var(--grid-line); padding: 2rem 1.5rem; }
+      .inv-card:last-child { border-bottom: none; }
+      .inv-disclaimer { padding: 1.5rem; }
+      .board-submit-area { grid-template-columns: 1fr; }
+      .board-form-inner { padding: 1.5rem; border-right: none; border-bottom: 3px solid var(--grid-line); }
+      .board-fields { grid-template-columns: 1fr; }
+      .board-field { border-right: 1px solid var(--grid-line) !important; }
+      .board-meta-col { padding: 1.5rem; flex-direction: row; flex-wrap: wrap; gap: 1rem; align-items: flex-end; }
+      .board-meta-field { flex: 1; min-width: 120px; }
+      .board-post-btn { width: 100%; }
+      .board-post { grid-template-columns: 110px 1fr; }
+      .board-post-side { display: none; }
+      .board-post-time { padding: 1.25rem 1rem; }
+      .board-post-body { padding: 1.25rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-left { padding: 2rem 1.5rem; border-right: none; border-bottom: 3px solid var(--grid-line); }
+      .contact-right { padding: 2rem 1.5rem; }
+      .contact-headline { font-size: 2.5rem; }
+      .disclosure-grid { grid-template-columns: 1fr; }
+      .disclosure-block { border-right: none !important; padding: 1.5rem; }
+      .disclosure-full { padding: 1.5rem; }
+      footer { height: auto; grid-template-columns: 1fr; text-align: center; padding: 1rem 1.5rem; gap: 0.25rem; }
+      footer p:last-child { text-align: center; }
+    }
+      </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-top">
+      <a class="nav-logo-block" href="#hero">MIDWEST<span>&nbsp;ARBITRAGE</span></a>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#ledger">Ledger</a></li>
+      <li><a href="#investments">Ideas</a></li>
+      <li><a href="#board">Board</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-main">
+      <div class="hero-left">
+        <div>
+          <p class="hero-eyebrow">// Certified Public Accountant</p>
+          <h1 class="hero-name">MIDWEST<span class="accent">ARBITRAGE</span></h1>
+          <p class="hero-desc">Risk-adjusted capital preservation. Opportunistic market analysis. Twenty years in the numbers — this is where the thinking gets posted.</p>
+        </div>
+        <a href="#ledger" class="hero-cta">Read The Ledger</a>
+      </div>
+      <div class="hero-right">
+        <div class="stat-block"><div class="stat-n">20+</div><div class="stat-l">Years Experience</div></div>
+        <div class="stat-block"><div class="stat-n">CPA</div><div class="stat-l">Certified Public Accountant</div></div>
+        <div class="stat-block"><div class="stat-n">Risk<br>First</div><div class="stat-l">Core Investment Philosophy</div></div>
+      </div>
+    </div>
+    <div class="hero-band">
+      <span>Capital Preservation</span><span class="sep">///</span>
+      <span>Volatility as Opportunity</span><span class="sep">///</span>
+      <span>Risk-Adjusted Returns</span><span class="sep">///</span>
+      <span>Market Analysis</span><span class="sep">///</span>
+      <span>Tax-Informed Investing</span>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div class="section-title-block">
+        <p class="section-eyebrow">// About</p>
+        <h2 class="section-title">NUMBERS DON'T LIE. MARKETS DO.</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Certified Public Accountant</strong> with over two decades of hands-on experience at the intersection of tax law and financial markets. My background gives me a lens most investors don't have — I think in after-tax returns, capital efficiency, and structural downside protection.</p>
+        <p>My investment philosophy is simple in principle and disciplined in practice: <strong>protect capital first, then hunt for asymmetric opportunities</strong> when the market's volatility creates them. Fear and dislocation are not problems to avoid — they are pricing events to exploit, with the right position sizing and risk framework.</p>
+        <p>Nothing here is financial advice. These are my personal views, shaped by two decades of reading markets, balance sheets, and the tax code.</p>
+      </div>
+      <div class="expertise-panel">
+        <p class="expertise-label">// Areas of Focus</p>
+        <div class="expertise-item">Risk-Adjusted Capital Preservation</div>
+        <div class="expertise-item">Volatility &amp; Market Cycle Analysis</div>
+        <div class="expertise-item">Equity &amp; Fixed Income Valuation</div>
+        <div class="expertise-item">Portfolio Construction &amp; Sizing</div>
+        <div class="expertise-item">After-Tax Investment Returns</div>
+        <div class="expertise-item">Macro &amp; Credit Market Analysis</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ledger">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div class="section-title-block">
+        <p class="section-eyebrow">// Market Writing</p>
+        <h2 class="section-title">THE LEDGER</h2>
+      </div>
+    </div>
+    <div class="ledger-grid">
+      <div class="ledger-card">
+        <p class="ledger-tag">Macro</p>
+        <h3>Credit Spreads Are Whispering What Equities Aren't Saying Yet</h3>
+        <p>When investment-grade spreads widen quietly while stocks hold, history suggests you should be paying close attention to the bond market's signal.</p>
+        <div class="ledger-meta"><span class="ledger-date">2026.02.15</span><a href="#" class="ledger-read">Read →</a></div>
+      </div>
+      <div class="ledger-card">
+        <p class="ledger-tag">Volatility</p>
+        <h3>Using Elevated VIX as a Shopping List Trigger</h3>
+        <p>Volatility spikes are uncomfortable — and that discomfort is exactly what creates entry points for patient, risk-aware investors.</p>
+        <div class="ledger-meta"><span class="ledger-date">2026.02.03</span><a href="#" class="ledger-read">Read →</a></div>
+      </div>
+      <div class="ledger-card">
+        <p class="ledger-tag">Capital Preservation</p>
+       <h3>The Case for Cash: Why Dry Powder Still Earns Its Keep</h3>
+        <p>With short-term yields elevated, holding cash isn't just defensive — it's a strategic position that funds opportunistic deployment when the moment arrives.</p>
+        <div class="ledger-meta"><span class="ledger-date">2026.01.21</span><a href="#" class="ledger-read">Read →</a></div>
+      </div>
+      <div class="ledger-card">
+        <p class="ledger-tag">Risk Management</p>
+        <h3>Position Sizing Is the Strategy Nobody Talks About Enough</h3>
+        <p>Being right about a thesis matters far less than how much you own when you're right — and how much you lose when you're wrong.</p>
+        <div class="ledger-meta"><span class="ledger-date">2026.01.09</span><a href="#" class="ledger-read">Read →</a></div>
+      </div>
+    </div>
+  </section>
+  <section id="investments">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div class="section-title-block">
+        <p class="section-eyebrow">// Current Thinking</p>
+        <h2 class="section-title">INVESTMENT IDEAS</h2>
+      </div>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-card">
+        <div class="inv-ticker">BRK.B</div>
+        <div class="inv-company">Berkshire Hathaway</div>
+        <p class="inv-thesis">A fortress balance sheet, disciplined capital allocation, and a collection of durable businesses. The benchmark for long-term compounding with embedded downside protection.</p>
+        <span class="inv-badge">Long-Term Hold</span>
+      </div>
+      <div class="inv-card">
+        <div class="inv-ticker">MSFT</div>
+        <div class="inv-company">Microsoft</div>
+        <p class="inv-thesis">Cloud infrastructure and enterprise software moats remain wide. Azure growth plus AI tooling integration creates durable recurring revenue with strong free cash flow characteristics.</p>
+        <span class="inv-badge">Core Position</span>
+      </div>
+      <div class="inv-card">
+        <div class="inv-ticker">VXUS</div>
+        <div class="inv-company">Total Intl Stock ETF</div>
+        <p class="inv-thesis">International equities trade at a significant valuation discount to the US. A prudent allocation for long-horizon investors seeking diversification and mean reversion potential.</p>
+        <span class="inv-badge">Diversification</span>
+      </div>
+    </div>
+    <p class="inv-disclaimer">// DISCLAIMER: These are personal opinions, not financial advice. Always consult a licensed advisor before making investment decisions. Past performance does not guarantee future results. Not an offer to buy or sell any security.</p>
+  </section>      
+  <section id="board">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div class="section-title-block">
+        <p class="section-eyebrow">// Community Ideas</p>
+        <h2 class="section-title">THE BOARD</h2>
+      </div>
+    </div>
+    <div class="board-submit-area">
+      <div class="board-form-inner">
+        <span class="board-form-label">// Post your idea — timestamped and public</span>
+        <div class="board-fields">
+          <div class="board-field">
+            <label>Ticker / Asset</label>
+            <input type="text" id="board-ticker" placeholder="e.g. AAPL" maxlength="12" />
+          </div>
+          <div class="board-field">
+            <label>Your Thesis</label>
+            <textarea id="board-thesis" rows="2" placeholder="Why are you watching this? What's the setup?" maxlength="280"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="board-meta-col">
+        <div class="board-meta-field">
+          <label>Handle</label>
+          <input type="text" id="board-handle" placeholder="anonymous" maxlength="20" />
+        </div>
+        <div class="board-meta-field">
+          <label>Stance</label>
+          <select id="board-stance">
+            <option value="bullish">Bullish</option>
+            <option value="bearish">Bearish</option>
+            <option value="neutral">Watching</option>
+          </select>
+        </div>
+        <button class="board-post-btn" id="board-submit-btn" onclick="submitPost()">Post Idea →</button>
+      </div>
+    </div>
+    <div class="board-feed" id="board-feed">
+      <div class="board-loading" id="board-loading">// Loading posts...</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div class="section-title-block">
+        <p class="section-eyebrow">// Get In Touch</p>
+        <h2 class="section-title">LET'S TALK MARKETS</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div>
+          <h3 class="contact-headline">HAVE A<br><span class="red">THESIS?</span><br>SHARE IT.</h3>
+          <p class="contact-tagline">Want to discuss a market view, debate an investment idea, or connect with someone who obsesses over risk-adjusted returns?</p>
+        </div>
+        <div class="contact-channels">
+          <div class="contact-channel">
+            <span class="channel-label">Email</span>
+            <span class="channel-value"><a href="mailto:investing@midwestarbitrage.com">investing@midwestarbitrage.com</a></span>
+          </div>
+          <div class="contact-channel">
+            <span class="channel-label">Location</span>
+            <span class="channel-value">Indiana, United States</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <label>// Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <label>// Email</label>
+            <input type="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-row">
+            <label>// Message</label>
+            <textarea rows="5" placeholder="What are you seeing in the market?" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="disclosures">
+    <div class="disclosures-header" onclick="toggleDisclosures()">
+      <span class="disclosures-toggle-label">// <span>Legal Disclosures</span> — Circular 230 Notice · No Investment Advice · No Tax Advice · General Public Information Only</span>
+      <span class="disclosures-chevron" id="disc-chevron">▼</span>
+    </div>
+    <div class="disclosures-body" id="disc-body">
+      <div class="disclosure-grid">
+        <div class="disclosure-block">
+          <p class="disclosure-tag">Circular 230 Notice</p>
+          <p class="disclosure-title">IRS CIRCULAR 230 DISCLOSURE</p>
+          <p class="disclosure-text">Pursuant to requirements imposed by the Internal Revenue Service, any U.S. federal tax advice contained on this website is not intended or written to be used, and cannot be used, for the purpose of (i) avoiding penalties imposed under the Internal Revenue Code or (ii) promoting, marketing, or recommending to another party any transaction or matter addressed herein.</p>
+        </div>
+        <div class="disclosure-block">
+          <p class="disclosure-tag">No Tax Advice</p>
+          <p class="disclosure-title">NO TAX ADVICE PROVIDED</p>
+          <p class="disclosure-text">Nothing on this website constitutes tax advice. All content, commentary, opinions, and materials published here are provided for general informational and educational purposes only. The information is not intended to create, and receipt or viewing does not constitute, a CPA-client relationship. Midwest Arbitrage does not accept any responsibility or liability for any actions taken based on the information provided on this site.</p>
+        </div>
+        <div class="disclosure-block">
+          <p class="disclosure-tag">No Investment Advice</p>
+          <p class="disclosure-title">NOT INVESTMENT ADVICE</p>
+          <p class="disclosure-text">All content published on this website, including The Ledger, Investment Ideas, The Board, and any other commentary, represents personal opinions and general market observations only. Nothing herein constitutes investment advice, a solicitation, recommendation, or offer to buy or sell any security or financial instrument. Midwest Arbitrage is not a registered investment adviser. Past performance referenced is not indicative of future results.</p>
+        </div>
+        <div class="disclosure-block">
+          <p class="disclosure-tag">General Information Only</p>
+          <p class="disclosure-title">FOR GENERAL PUBLIC CONSUMPTION</p>
+          <p class="disclosure-text">All opinions, ideas, and commentary shared on this site — including content posted by visitors on The Board — are shared for general public informational purposes only and are not intended to be relied upon for investment, financial, tax, legal, or any other professional decision-making. Visitors should conduct their own independent research and consult with appropriate licensed professionals before making any decisions.</p>
+        </div>
+      </div>
+      <div class="disclosure-full">
+        // FULL DISCLAIMER: This website and all of its contents are provided "as is" for general informational purposes only. Midwest Arbitrage expressly disclaims all warranties, express or implied. The views expressed are solely those of the author in their personal capacity and do not represent the views of any employer, client, or affiliated organization. Third-party content posted to The Board is the sole responsibility of the individual poster; Midwest Arbitrage assumes no liability for user-generated content. The author may hold positions in securities mentioned. Content may be outdated and is not updated in real time. By accessing this website you acknowledge that you have read, understood, and agreed to these terms.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Midwest Arbitrage — All rights reserved</p>
+    <p>Not financial or tax advice &nbsp;·&nbsp; Circular 230 applies &nbsp;·&nbsp; Personal views only</p>
+  </footer>
+
+  <div class="share-popup" id="share-popup">
+    <div class="share-popup-title">// Share this idea</div>
+    <div class="share-popup-btns" id="share-popup-btns"></div>
+    <div class="share-copied" id="share-copied">✓ Copied to clipboard</div>
+    <button class="share-popup-close" onclick="closeShare()">✕ Close</button>
+  </div>
+
+  <script>
+    const BOARD_KEY = 'board-posts';
+    function formatDate(ts) {
+      const d = new Date(ts);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+    function formatTime(ts) {
+      const d = new Date(ts);
+      return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+    }
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function escapeJs(str) {
+      return str.replace(/'/g,"\\'").replace(/\n/g,' ');
+    }
+    function renderPost(post) {
+      const stance = post.stance || 'neutral';
+      const stanceLabel = stance === 'bullish' ? 'Bullish' : stance === 'bearish' ? 'Bearish' : 'Watching';
+      return `
+        <div class="board-post">
+          <div class="board-post-time">
+            <span class="post-date">${formatDate(post.ts)}</span>
+            <span class="post-time">${formatTime(post.ts)}</span>
+          </div>
+          <div class="board-post-body">
+            <span class="post-handle">@${escapeHtml(post.handle || 'anonymous')}</span>
+            <span class="post-ticker-label ${stance}">${stanceLabel}</span>
+            <p class="post-text">${escapeHtml(post.thesis)}</p>
+            <button class="post-share-btn" onclick="openShare(event,'${escapeHtml(post.ticker.toUpperCase())}','${escapeJs(post.thesis)}','${stance}')">↗ Share</button>
+          </div>
+          <div class="board-post-side">
+            <span class="post-ticker-big">${escapeHtml(post.ticker.toUpperCase())}</span>
+          </div>
+        </div>`;
+    }
+    async function loadBoard() {
+      const feed = document.getElementById('board-feed');
+      try {
+        const result = await window.storage.list(BOARD_KEY + ':', true);
+        const keys = result ? result.keys : [];
+        if (keys.length === 0) {
+          feed.innerHTML = '<div class="board-empty">// No ideas posted yet. Be the first to post.</div>';
+          return;
+        }
+        const posts = await Promise.all(keys.map(async k => {
+          try { const r = await window.storage.get(k, true); return r ? JSON.parse(r.value) : null; }
+          catch { return null; }
+        }));
+        const valid = posts.filter(Boolean).sort((a,b) => b.ts - a.ts);
+        feed.innerHTML = valid.map(renderPost).join('');
+      } catch(e) {
+        feed.innerHTML = '<div class="board-empty">// No ideas posted yet. Be the first to post.</div>';
+      }
+    }
+    async function submitPost() {
+      const ticker = document.getElementById('board-ticker').value.trim();
+      const thesis = document.getElementById('board-thesis').value.trim();
+      const handle = document.getElementById('board-handle').value.trim() || 'anonymous';
+      const stance = document.getElementById('board-stance').value;
+      const btn = document.getElementById('board-submit-btn');
+      if (!ticker || !thesis) {
+        btn.textContent = 'Ticker + thesis required';
+        setTimeout(() => btn.textContent = 'Post Idea →', 2000);
+        return;
+      }
+      btn.disabled = true; btn.textContent = 'Posting...';
+      const ts = Date.now();
+      const post = { ticker, thesis, handle, stance, ts };
+      const key = BOARD_KEY + ':' + ts + '-' + Math.random().toString(36).slice(2,7);
+      try {
+        await window.storage.set(key, JSON.stringify(post), true);
+        document.getElementById('board-ticker').value = '';
+        document.getElementById('board-thesis').value = '';
+        document.getElementById('board-handle').value = '';
+        document.getElementById('board-stance').value = 'bullish';
+        await loadBoard();
+        btn.textContent = 'Posted ✓';
+        setTimeout(() => { btn.textContent = 'Post Idea →'; btn.disabled = false; }, 2000);
+      } catch(e) {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+        setTimeout(() => btn.textContent = 'Post Idea →', 2500);
+      }
+    }
+    loadBoard();
+    let _shareText = '';
+    function openShare(e, ticker, thesis, stance) {
+      e.stopPropagation();
+      const stanceLabel = stance === 'bullish' ? '🟢 Bullish' : stance === 'bearish' ? '🔴 Bearish' : '🟡 Watching';
+      const short = thesis.length > 100 ? thesis.slice(0,97) + '...' : thesis;
+      _shareText = stanceLabel + ' $' + ticker + ' — ' + short + ' via midwestarbitrage.com';
+      const url = 'https://midwestarbitrage.com';
+      if (navigator.share) {
+        navigator.share({ title: '$' + ticker + ' — Midwest Arbitrage', text: _shareText, url: url }).catch(() => {});
+        return;
+      }
+      const xUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(_shareText);
+      const liUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&summary=' + encodeURIComponent(_shareText);
+      document.getElementById('share-popup-btns').innerHTML = `
+        <a class="share-option" href="${xUrl}" target="_blank" rel="noopener"><span class="share-option-icon">𝕏</span> Post on X</a>
+        <a class="share-option" href="${liUrl}" target="_blank" rel="noopener"><span class="share-option-icon">in</span> Share on LinkedIn</a>
+        <button class="share-option" onclick="copyShare()"><span class="share-option-icon">⧉</span> Copy to clipboard</button>
+        <button class="share-option" onclick="copyShare(true)"><span class="share-option-icon">📸</span> Copy for Instagram</button>`;
+      document.getElementById('share-copied').classList.remove('show');
+      document.getElementById('share-popup').classList.add('open');
+    }
+    function closeShare() { document.getElementById('share-popup').classList.remove('open'); }
+    function copyShare(forInstagram) {
+      const text = forInstagram ? _shareText + '\n\n#investing #stocks #midwestarbitrage' : _shareText;
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('share-copied').classList.add('show');
+        setTimeout(() => { document.getElementById('share-copied').classList.remove('show'); if (forInstagram) closeShare(); }, 2000);
+      });
+    }
+    document.addEventListener('click', (e) => {
+      const popup = document.getElementById('share-popup');
+      if (popup.classList.contains('open') && !popup.contains(e.target)) closeShare();
+    });
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Sent ✓';
+      setTimeout(() => btn.textContent = 'Send Message →', 3000);
+    }
+    function toggleDisclosures() {
+      const body = document.getElementById('disc-body');
+      const chevron = document.getElementById('disc-chevron');
+      body.classList.toggle('open');
+      chevron.classList.toggle('open');
+    }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
