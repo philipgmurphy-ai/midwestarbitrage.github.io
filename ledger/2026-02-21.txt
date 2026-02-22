@@ -1,0 +1,1 @@
+Most BDCs are currently trading at a 20-30% discount to NAV, which already prices in significant portfolio defaults. These defaults are unlikely to be widespread without a global macro event trigger. Selling cash secured puts below the current trading price on these already discounted securities adds an additional layer of risk protection against further drops in NAV.
